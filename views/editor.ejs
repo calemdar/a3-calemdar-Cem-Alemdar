@@ -6,7 +6,7 @@
     <div class="row" style="display: flex;">
       
       <div class="shader column" style="flex: 50%;">
-        <form action="/users/editor" method="POST">
+        <form action="/editor/save" method="POST">
           <input class="slider red" type="range" name="red" min="0" max="1" step="0.1" style="width: 100px">
           <label for="red" style="color: red">Red</label>
           <br>
@@ -28,7 +28,7 @@
           <input class="slider freq" type="range" name="freq" min="1" max="5" step="1">
           <label for="freq" style="color: purple">Frequency</label>
           <br>
-          <input type="name" id="name" name="name" class="form-control" placeholder="Shader name"/>
+          <input type="name" id="name" name="name" class="form-control" value="Shader name"/>
           <br>
           <button type="submit" class="btn btn-primary btn-block">Save shader</button>
         </form>
@@ -59,11 +59,10 @@
               <td class="abs" style="border: 3px solid #ffffff;"><%=shader.abs%></td>
               <td class="freq" style="border: 3px solid #ffffff;"><%=shader.freq%></td>
               <td style="border: 3px solid #ffffff;">
-                <button type="submit" onClick="deleteShader()" class="btn btn-primary btn-block">Delete</button>
+                <form id="delete" action="/editor/delete/<%= shader.name %>" method="POST">
+                  <button type="submit" class="btn btn-primary btn-block">Delete</button>
+                </form> 
               </td>
-              <%function deleteShader (){
-                
-              }%>
             </tr>
           <%});%>
           </tbody>

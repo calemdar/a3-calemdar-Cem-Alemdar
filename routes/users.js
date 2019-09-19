@@ -77,31 +77,6 @@ router.post('/register', (req, res) => {
     });
   }
 });
-
-// Save Shader
-router.post('/editor', (req, res, next) => {
-  const sliders = req.body;
-  
-  User.findOne({ email: req.user.email }).then(user => {
-    
-    User.updateOne(
-      { email: user.email },
-      { $push: { shaders: sliders } }
-    )
-      .then(user => {
-        req.flash(
-          'success_msg',
-          'Shader saved'
-          );
-        res.redirect('/editor');
-    });
-  });
-});
-
-// Remove
-router.post('/remove', (req, res, next) => {
-  
-})
   
 
 // Login
